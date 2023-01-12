@@ -16,18 +16,6 @@ namespace GastroAPI.Services
             _repository = repository;
         }
 
-        // haetaan kaikki itemit
-        public async Task<IEnumerable<ItemDTO>> GetItemsAsync()
-        {
-            IEnumerable<Item> items = await _repository.GetItemsAsync(); // itemit tietokannasta
-            List<ItemDTO> result = new List<ItemDTO>(); // lista dto:sta
-            foreach (Item i in items) // käydään tietokannasta saatu items-lista läpi
-            {
-                result.Add(ItemToDTO(i)); // käydään jokainen item läpi, heitetään se ItemToDTO funktiolle, ja lopputulos lisätään listaan
-            }
-            return result; // palautetaan
-        }
-
         // haetaan itemia id:n perusteella
         public async Task<ItemDTO> GetItemAsync(long id)
         {
@@ -39,6 +27,18 @@ namespace GastroAPI.Services
                 return ItemToDTO(item); // jos löytyy niin tehdään siitä DTO
             }
             return null; // jos ei ole löydetty, palautetaan null
+        }
+
+        // haetaan kaikki itemit
+        public async Task<IEnumerable<ItemDTO>> GetItemsAsync()
+        {
+            IEnumerable<Item> items = await _repository.GetItemsAsync(); // itemit tietokannasta
+            List<ItemDTO> result = new List<ItemDTO>(); // lista dto:sta
+            foreach (Item i in items) // käydään tietokannasta saatu items-lista läpi
+            {
+                result.Add(ItemToDTO(i)); // käydään jokainen item läpi, heitetään se ItemToDTO funktiolle, ja lopputulos lisätään listaan
+            }
+            return result; // palautetaan
         }
 
         // haetaan kyselyn perusteella, esim "juustohampurilainen"

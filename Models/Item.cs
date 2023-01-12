@@ -2,6 +2,7 @@
 {
     public class Item
     {
+        // itemin tiedot tietokannassa
         public long Id { get; set; }
         public String Name { get; set; }
         public String Price { get; set; }
@@ -13,6 +14,7 @@
 
     public class ItemDTO
     {
+        // itemin tiedot sivulla esitettyna
         public String Name { get; set; }
         public String Price { get; set; }
         public String Alv { get; set; }

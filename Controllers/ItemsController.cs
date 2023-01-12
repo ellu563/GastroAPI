@@ -19,7 +19,7 @@ namespace GastroAPI.Controllers
         // get kutsut haetaan servicen kautta
         private readonly IItemService _service;
 
-        // jätetään nyt myös post, put, ja deleteä varten contekstin käyttö
+        // käytetään post, put ja deletessä palvelua suoraan kontekstin kautta
         private readonly GastroBarContext _context;
 
         public ItemsController(IItemService service, GastroBarContext context) 
@@ -29,7 +29,7 @@ namespace GastroAPI.Controllers
         }
 
         /// <summary>
-        /// Hakee kaikki tuotteet kannasta
+        /// Hakee kaikki tuotteet
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -68,12 +68,19 @@ namespace GastroAPI.Controllers
             return Ok(await _service.QueryItemsAsync(query));
         }
 
-        // PUT, POST JA DELETE jätetään vaan paikoilleen mahdollista varten
-        // niissä käytetään palvelua contextin kautta, eikä ole tehty erikseen kolmikerrosrakennetta servicen ja repositoryn kautta
+        // PUT, POST JA DELETE 
+        // käytetään palvelua contextin kautta, eikä ole tehty erikseen kolmikerrosrakennetta servicen ja repositoryn kautta
         // muokkaus ja poisto pitää tehdä id:n avulla
+        // tässä vaiheessa ei tarvetta muokata niitä enempää
 
         // PUT: api/Items1/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Muokkaa tuotteen tietoja id:n avulla
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutItem(long id, Item item)
         {
@@ -105,6 +112,11 @@ namespace GastroAPI.Controllers
 
         // POST: api/Items1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Luo uuden item/tuotteen
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
@@ -115,6 +127,11 @@ namespace GastroAPI.Controllers
         }
 
         // DELETE: api/Items1/5
+        /// <summary>
+        /// Poistaa tuotteen
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(long id)
         {

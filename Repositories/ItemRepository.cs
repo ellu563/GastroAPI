@@ -14,15 +14,15 @@ namespace GastroAPI.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync() // hakee kaikki
-        {
-            return await _context.Items.ToListAsync(); // hakee koko listan sisällön (ja imaget)
-        }
-
         public async Task<Item> GetItemAsync(long id) // hakee id:n perusteella vain yhden
         {
             // palauttaa tietokannasta löytyvä itemi
             return await _context.Items.FirstOrDefaultAsync(i => i.Id == id); // löytyykö tietokannasta ja palauttaa
+        }
+
+        public async Task<IEnumerable<Item>> GetItemsAsync() // hakee kaikki
+        {
+            return await _context.Items.ToListAsync(); // hakee koko listan sisällön (ja imaget)
         }
 
         public async Task<IEnumerable<Item>> QueryItems(string query)
