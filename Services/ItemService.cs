@@ -53,6 +53,20 @@ namespace GastroAPI.Services
             return itemDTOs;
         }
 
+        // yritetaan nyt tehda vain yhdelle se haku !!!!!!!!!!!!!!!!!!
+        public async Task<ItemDTO> QueryItemAsync(String query)
+        {
+            Item item = await _repository.QueryItem(query);
+
+            if (item != null) // tarkistetaan löytyykö sieltä mitään
+            {
+
+                return ItemToDTO(item); // jos löytyy niin tehdään siitä DTO
+            }
+            return null; // jos ei ole löydetty, palautetaan null
+
+        }
+
         // otetaan ennen verkon yli lähetystä nyt id pois kun sitä ei tarvita sivulla
         private ItemDTO ItemToDTO(Item item)
         {

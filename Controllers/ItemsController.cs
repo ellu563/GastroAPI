@@ -62,10 +62,17 @@ namespace GastroAPI.Controllers
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        [HttpGet("{query}")]
+        [HttpGet("food/{query}")]
         public async Task<ActionResult<ItemDTO>> QueryItems(String query)
         {
             return Ok(await _service.QueryItemsAsync(query));
+        }
+
+        // tehdään haku nyt vaan yhdelle tuotteelle
+        [HttpGet("one/{query}")]
+        public async Task<ActionResult<ItemDTO>> QueryItem(String query)
+        {
+            return Ok(await _service.QueryItemAsync(query));
         }
 
         // PUT, POST JA DELETE 

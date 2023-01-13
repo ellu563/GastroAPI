@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GastroAPI.Models;
 using GastroAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GastroAPI.Controllers
 {
@@ -33,17 +34,23 @@ namespace GastroAPI.Controllers
             return Ok(await _service.GetBasketsAsync()); // Ok=http 200
         }
 
-        // yritetaan nyt hakea kaikkia sen poytanumeron perusteella
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<IEnumerable<BasketDTO>>> GetBaskets(long id)
+        
+        // api/baskets/{{234}} tai api/baskets/"234"
+        /// <summary>
+        /// Haetaan kaikki tilaukset poytanumeron perusteella
+        /// </summary>
+        /// <param name="tablenumber"></param>
+        /// <returns></returns>
+        [HttpGet("table/{tablenumber}")]
+        public async Task<ActionResult<IEnumerable<BasketDTO>>> GetBaskets(string tablenumber)
         {
-            return Ok(await _service.GetBasketsAsync()); // Ok=http 200
+            return Ok(await _service.GetBasketsAsync(tablenumber)); // Ok=http 200
         }
 
-        /*
+   
         // GET: api/Baskets/5
         /// <summary>
-        /// Hae basket id:n perusteella
+        /// Hae yksi id:n perusteella
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -60,12 +67,17 @@ namespace GastroAPI.Controllers
 
             return item;
         }
-        */
 
         // PUT/POST/DELETE contekstin kautta
 
         // PUT: api/Baskets/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Muokkaa baskettia
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="basket"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBasket(long id, Basket basket)
         {
@@ -97,16 +109,38 @@ namespace GastroAPI.Controllers
 
         // POST: api/Baskets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Luo uusi
+        /// </summary>
+        /// <param name="basket"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Basket>> PostBasket(Basket basket)
         {
+            // huom !! tässä yritetään nyt korjata sitä ongelmaa että se on NULL !!!!!
+            // tässä ei ehkä enää tarvii luoda oliota jos luon sen tuolla servicessä
+            Basket newBasket = await _service.CreateBasketAsync(basket);
+            if (newBasket == null)
+            {
+                return Problem();
+            }
+
+            return CreatedAtAction("GetBasket", new { id = newBasket.Id }, newBasket);
+
+            /* vanha toimiva
             _context.Baskets.Add(basket);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBasket", new { id = basket.Id }, basket);
+            */
         }
 
         // DELETE: api/Baskets/5
+        /// <summary>
+        /// Poista
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBasket(long id)
         {

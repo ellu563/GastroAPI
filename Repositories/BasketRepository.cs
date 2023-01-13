@@ -1,5 +1,7 @@
 ﻿using GastroAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GastroAPI.Repositories
 {
@@ -13,25 +15,38 @@ namespace GastroAPI.Repositories
             _context = context;
         }
 
-        /*
-        public async Task<Basket> GetBasketAsync(long id)
-        {
-            // huom. tähän voidaan vaihtaa että TableNumber, hakee sillon sen perusteella
-
-            return await _context.Baskets.FirstOrDefaultAsync(i => i.Id == id);
-        }*/
-
+        // haetaan kaikki tilaukset
         public async Task<IEnumerable<Basket>> GetBasketsAsync()
         {
             return await _context.Baskets.ToListAsync();
         }
 
-        // yritetaan nyt hakea kaikki yhden id:n perusteella 563
-        public async Task<IEnumerable<Basket>> GetBasketsAsync(long id)
+        // haetaan yksi id:n perusteella
+        public async Task<Basket> GetBasketAsync(long id)
         {
-            return await _context.Baskets.Where(i => i.Id == id).ToListAsync();
-            // original
-            // return await _context.Baskets.ToListAsync();
+            // huom. tähän voitaisiin vaihtaa että TableNumber, hakee sillon sen perusteella
+            return await _context.Baskets.FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        // haetaan poytanumeron perusteella kaikki sen tilaukset listaan
+        public async Task<IEnumerable<Basket>> GetBasketsAsync(string tablenumber)
+        {
+          return await _context.Baskets.Where(x => x.TableNumber == tablenumber).ToListAsync();
+        }
+
+        // lisää uusi
+        public async Task<Basket> AddBasketAsync(Basket basket)
+        {
+            _context.Baskets.Add(basket); // lisätään kokoelmaan (muistissa), ei vielä tallennettu tietokantaan 
+            try
+            {
+                await _context.SaveChangesAsync(); //  tallennetaan/contextin tilan päivitys (kutsutaan asynkronista = await)
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            return basket;
         }
     }
 }
