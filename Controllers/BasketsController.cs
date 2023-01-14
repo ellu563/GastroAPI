@@ -117,8 +117,6 @@ namespace GastroAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Basket>> PostBasket(Basket basket)
         {
-            // huom !! tässä yritetään nyt korjata sitä ongelmaa että se on NULL !!!!!
-            // tässä ei ehkä enää tarvii luoda oliota jos luon sen tuolla servicessä
             Basket newBasket = await _service.CreateBasketAsync(basket);
             if (newBasket == null)
             {

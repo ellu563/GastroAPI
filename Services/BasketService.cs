@@ -35,7 +35,7 @@ namespace GastroAPI.Services
             newBasket.Amount = dto.Amount;
             newBasket.Item = dto.Item;
             newBasket.Price = dto.Price;
-            newBasket.Status = dto.Status;
+            // newBasket.Status = dto.Status;
 
             /* kehitysvaiheen testejä:
             Item item = await _itemRepository.QueryItem((Convert.ToString(dto.Item)));

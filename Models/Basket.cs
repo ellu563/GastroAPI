@@ -1,4 +1,6 @@
-﻿namespace GastroAPI.Models
+﻿using MessagePack;
+
+namespace GastroAPI.Models
 {
     public class Basket
     {
@@ -9,15 +11,15 @@
         public String Price { get; set; }
         public String Amount { get; set; } // pitää lisätä kentäksi
         public DateTime OrderTime { get; set; }
-        public String Status { get; set; }
     }
     public class BasketDTO
     {
         // tämä tuodaan esiin ostoskorissa
+        public long Id { get; set; }
         public String? Item { get; set; } // reservationDTO:ssa tama myos string
 
         public String? Price { get; set; } // huom. reservationDTO:ssa tama on long tyyppinen
-        public String Amount { get; set; }
+        public String? Amount { get; set; }
     }
 
     /* kehitysvaiheen testejä:
