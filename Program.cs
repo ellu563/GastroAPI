@@ -44,8 +44,18 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+// frontendia varten
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -61,6 +71,8 @@ using (var scope = app.Services.CreateScope())
     dbcontext.Database.EnsureCreated();
 
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
