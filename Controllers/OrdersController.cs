@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GastroAPI.Models;
+using GastroAPI.Services;
 
 namespace GastroAPI.Controllers
 {
@@ -15,9 +16,12 @@ namespace GastroAPI.Controllers
     {
         private readonly GastroBarContext _context;
 
-        public OrdersController(GastroBarContext context)
+        private readonly IOrderService _service;
+
+        public OrdersController(IOrderService service, GastroBarContext context)
         {
             _context = context;
+            _service = service;
         }
 
         // GET: api/Orders
@@ -39,6 +43,14 @@ namespace GastroAPI.Controllers
             }
 
             return order;
+        }
+
+        // TEHTÄVÄÄ: GET pöytänumeron perusteella
+        // huom. orders kenttä eli productsit saatavat includetettua kutsuun
+        [HttpGet("table/{tablenumber}")]
+        public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders(string tablenumber)
+        {
+            return Ok(await _service.GetOrdersAsync(tablenumber)); // Ok=http 200
         }
 
         // PUT: api/Orders/5

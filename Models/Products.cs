@@ -9,4 +9,12 @@
         public String? Amount { get; set; }
     }
 
+    public class ProductsDTO
+    {
+        public String? Item { get; set; }
+
+        public String? Price { get; set; }
+        public String? Amount { get; set; }
+    }
+
 }
