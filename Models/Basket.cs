@@ -15,7 +15,7 @@ namespace GastroAPI.Models
     public class BasketDTO
     {
         // tämä tuodaan esiin ostoskorissa
-        public long Id { get; set; }
+        // public long Id { get; set; } otetaan pois
         public String? Item { get; set; } // reservationDTO:ssa tama myos string
 
         public String? Price { get; set; } // huom. reservationDTO:ssa tama on long tyyppinen

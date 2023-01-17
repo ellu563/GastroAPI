@@ -11,47 +11,47 @@ namespace GastroAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TablesController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly GastroBarContext _context;
 
-        public TablesController(GastroBarContext context)
+        public ProductsController(GastroBarContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tables
+        // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Table>>> GetTables()
+        public async Task<ActionResult<IEnumerable<Products>>> GetProducts()
         {
-            return await _context.Tables.ToListAsync();
+            return await _context.Products.ToListAsync();
         }
 
-        // GET: api/Tables/5
+        // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Table>> GetTable(long id)
+        public async Task<ActionResult<Products>> GetProducts(long id)
         {
-            var table = await _context.Tables.FindAsync(id);
+            var products = await _context.Products.FindAsync(id);
 
-            if (table == null)
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return table;
+            return products;
         }
 
-        // PUT: api/Tables/5
+        // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTable(long id, Table table)
+        public async Task<IActionResult> PutProducts(long id, Products products)
         {
-            if (id != table.Id)
+            if (id != products.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(table).State = EntityState.Modified;
+            _context.Entry(products).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace GastroAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TableExists(id))
+                if (!ProductsExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace GastroAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Tables
+        // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Table>> PostTable(Table table)
+        public async Task<ActionResult<Products>> PostProducts(Products products)
         {
-            _context.Tables.Add(table);
+            _context.Products.Add(products);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTable", new { id = table.Id }, table);
+            return CreatedAtAction("GetProducts", new { id = products.Id }, products);
         }
 
-        // DELETE: api/Tables/5
+        // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTable(long id)
+        public async Task<IActionResult> DeleteProducts(long id)
         {
-            var table = await _context.Tables.FindAsync(id);
-            if (table == null)
+            var products = await _context.Products.FindAsync(id);
+            if (products == null)
             {
                 return NotFound();
             }
 
-            _context.Tables.Remove(table);
+            _context.Products.Remove(products);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TableExists(long id)
+        private bool ProductsExists(long id)
         {
-            return _context.Tables.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

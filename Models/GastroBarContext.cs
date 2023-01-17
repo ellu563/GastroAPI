@@ -13,7 +13,7 @@ namespace GastroAPI.Models
             public DbSet<Item> Items { get; set; } = null!;
             public DbSet<Basket> Baskets { get; set; } = null!;
             public DbSet<Order> Orders { get; set; } = null!;
-            public DbSet<Table> Tables { get; set; } = null!;
+            public DbSet<Products> Products { get; set; } = null!;
 
             
     }
