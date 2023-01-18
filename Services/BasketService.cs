@@ -107,6 +107,7 @@ namespace GastroAPI.Services
             }
             */
 
+           dto.Id = basket.Id;
            dto.Item = basket.Item;
            dto.Price = basket.Price;
            dto.Amount = basket.Amount;

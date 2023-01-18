@@ -35,15 +35,15 @@ namespace GastroAPI.Services
             dto.TableNumber = order.TableNumber;
 
             // KESKEN  täs kohtaa pitäs löytää se oikee order
-            if (order.Orders != null)
+            /*if (order.Orders != null)
             {
                 order.Orders = new List<Products>();
                 foreach (Products i in order.Orders)
                 {
                     dto.Orders = order.Orders;
                 }
-            }
-
+            }*/
+            dto.Orders = order.Orders;
             dto.Status = order.Status;
 
             return dto;
