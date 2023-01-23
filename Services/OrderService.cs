@@ -34,7 +34,7 @@ namespace GastroAPI.Services
 
             dto.TableNumber = order.TableNumber;
 
-            // KESKEN  täs kohtaa pitäs löytää se oikee order
+            
             /*if (order.Orders != null)
             {
                 order.Orders = new List<Products>();

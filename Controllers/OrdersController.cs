@@ -45,8 +45,8 @@ namespace GastroAPI.Controllers
             return order;
         }
 
-        // TEHTÄVÄÄ: GET pöytänumeron perusteella
-        // huom. orders kenttä eli productsit saatavat includetettua kutsuun
+        // GET pöytänumeron perusteella
+        // include (tilauksessa olevat products) + haetaan vain ne tilaukset jossa status = "open"
         [HttpGet("table/{tablenumber}")]
         public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders(string tablenumber)
         {

@@ -6,13 +6,17 @@ namespace GastroAPI.Repositories
     public class OrderRepository : IOrderRepository
     {
         private readonly GastroBarContext _context;
+
+        const string stat = "open";
+        const string statFalse = "closed";
         public OrderRepository(GastroBarContext context)
         {
             _context = context;
         }
         public async Task<IEnumerable<Order>> GetOrdersAsync(string tablenumber)
         {
-            return await _context.Orders.Where(x => x.TableNumber == tablenumber).ToListAsync();
+            // huom. include lause tuo tilauksen esiin, ja statuksella tuodaan esiin vain avoinna olevat tilaukset
+            return await _context.Orders.Include(i => i.Orders).Where(x => x.TableNumber == tablenumber && x.Status == stat).ToListAsync();
         }
     }
 }
