@@ -27,6 +27,14 @@ namespace GastroAPI.Services
             return result;
         }
 
+        // GET pelkällä orderilla, ei order dto
+        public async Task<IEnumerable<Order>> GetOrdersByAsync(string tablenumber)
+        {
+            IEnumerable<Order> orders = await _repository.GetOrdersByAsync(tablenumber);
+            return orders;
+        
+        }
+
         // muunnetaan order orderDTOksi
         private OrderDTO OrderToDTO(Order order)
         {

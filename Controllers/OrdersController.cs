@@ -53,6 +53,13 @@ namespace GastroAPI.Controllers
             return Ok(await _service.GetOrdersAsync(tablenumber)); // Ok=http 200
         }
 
+        // GET pelkällä orderilla, ei order dto
+        [HttpGet("table/tables/{tablenumber}")]
+        public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrdersBy(string tablenumber)
+        {
+            return Ok(await _service.GetOrdersByAsync(tablenumber)); // Ok=http 200
+        }
+
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
