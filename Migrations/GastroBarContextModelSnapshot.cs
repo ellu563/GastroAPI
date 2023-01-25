@@ -55,7 +55,7 @@ namespace GastroAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("GastroAPI.Models.Order", b =>
@@ -82,7 +82,7 @@ namespace GastroAPI.Migrations
 
                     b.HasIndex("TableIdentifierId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("GastroAPI.Models.Table", b =>
@@ -106,7 +106,7 @@ namespace GastroAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tables");
+                    b.ToTable("Tables", (string)null);
                 });
 
             modelBuilder.Entity("GastroAPI.Models.Order", b =>

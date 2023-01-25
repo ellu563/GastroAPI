@@ -30,12 +30,12 @@ namespace GastroAPI.Services
         {
             Basket newBasket = new Basket();
 
-            newBasket.Id = dto.Id;
+            newBasket.ProductId = dto.ProductId;
             newBasket.TableNumber = dto.TableNumber; 
             newBasket.Amount = dto.Amount;
             newBasket.Item = dto.Item;
             newBasket.Price = dto.Price;
-            // newBasket.Status = dto.Status;
+            newBasket.Status = dto.Status;
 
             /* kehitysvaiheen testejä:
             Item item = await _itemRepository.QueryItem((Convert.ToString(dto.Item)));
@@ -107,10 +107,11 @@ namespace GastroAPI.Services
             }
             */
 
-           dto.Id = basket.Id;
+           dto.ProductId = basket.ProductId;
            dto.Item = basket.Item;
            dto.Price = basket.Price;
            dto.Amount = basket.Amount;
+           dto.Status = basket.Status;
 
            return dto;
         }

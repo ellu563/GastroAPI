@@ -81,7 +81,7 @@ namespace GastroAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBasket(long id, Basket basket)
         {
-            if (id != basket.Id)
+            if (id != basket.ProductId)
             {
                 return BadRequest();
             }
@@ -123,7 +123,7 @@ namespace GastroAPI.Controllers
                 return Problem();
             }
 
-            return CreatedAtAction("GetBasket", new { id = newBasket.Id }, newBasket);
+            return CreatedAtAction("GetBasket", new { id = newBasket.ProductId }, newBasket);
 
             /* vanha toimiva
             _context.Baskets.Add(basket);
@@ -156,7 +156,7 @@ namespace GastroAPI.Controllers
 
         private bool BasketExists(long id)
         {
-            return _context.Baskets.Any(e => e.Id == id);
+            return _context.Baskets.Any(e => e.ProductId == id);
         }
     }
 }
