@@ -4,9 +4,12 @@ namespace GastroAPI.Repositories
 {
     public interface IOrderRepository
     {
-        public Task<IEnumerable<Order>> GetOrdersAsync(string tablenumber); // get poytanumeron perusteella
+        public Task<IEnumerable<Order>> GetOrdersAsync(string tablenumber); 
 
-        // // GET pelkällä orderilla, ei order dto
+        // GET status open
         public Task<IEnumerable<Order>> GetOrdersByAsync(string tablenumber); // get poytanumeron perusteella
+
+        // GET status billing
+        public Task<IEnumerable<Order>> GetOrdersBillingByAsync(string tablenumber);
     }
 }

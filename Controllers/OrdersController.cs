@@ -45,7 +45,7 @@ namespace GastroAPI.Controllers
             return order;
         }
 
-        // GET pöytänumeron perusteella
+        // GET pöytänumeron perusteella, ORDERDTO
         // include (tilauksessa olevat products) + haetaan vain ne tilaukset jossa status = "open"
         [HttpGet("table/{tablenumber}")]
         public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders(string tablenumber)
@@ -53,11 +53,18 @@ namespace GastroAPI.Controllers
             return Ok(await _service.GetOrdersAsync(tablenumber)); // Ok=http 200
         }
 
-        // GET pelkällä orderilla, ei order dto
+        // GET status OPEN
         [HttpGet("table/tables/{tablenumber}")]
-        public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrdersBy(string tablenumber)
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersBy(string tablenumber)
         {
             return Ok(await _service.GetOrdersByAsync(tablenumber)); // Ok=http 200
+        }
+
+        // GET status BILLING
+        [HttpGet("table/billing/{tablenumber}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersBillingBy(string tablenumber)
+        {
+            return Ok(await _service.GetOrdersBillingByAsync(tablenumber)); // Ok=http 200
         }
 
         // PUT: api/Orders/5

@@ -7,7 +7,7 @@ namespace GastroAPI.Models
     public class Basket
     {
         [Key]
-        // tämä menee tietokantaan, kun ostoskoriin on lisatty tavaraa
+        // huom. productId olisi paremmin ollut nimetty basketId
         public long ProductId { get; set; }
         public String TableNumber { get; set; } // huom. table modelia ei nyt kayteta
         public String Item { get; set; }

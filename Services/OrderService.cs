@@ -15,7 +15,6 @@ namespace GastroAPI.Services
         }
         
         // etsitään pöytänumeron perusteella
-        // tää toimii kyl iha sillee et palauttaa ne order dto:ina
         public async Task<IEnumerable<OrderDTO>> GetOrdersAsync(string tablenumber)
         {
             IEnumerable<Order> orders = await _repository.GetOrdersAsync(tablenumber);
@@ -27,12 +26,20 @@ namespace GastroAPI.Services
             return result;
         }
 
-        // GET pelkällä orderilla, ei order dto
+        // GET status open
         public async Task<IEnumerable<Order>> GetOrdersByAsync(string tablenumber)
         {
             IEnumerable<Order> orders = await _repository.GetOrdersByAsync(tablenumber);
             return orders;
         
+        }
+
+        // GET status billing
+        public async Task<IEnumerable<Order>> GetOrdersBillingByAsync(string tablenumber)
+        {
+            IEnumerable<Order> orders = await _repository.GetOrdersBillingByAsync(tablenumber);
+            return orders;
+
         }
 
         // muunnetaan order orderDTOksi
@@ -42,15 +49,6 @@ namespace GastroAPI.Services
 
             dto.TableNumber = order.TableNumber;
 
-            
-            /*if (order.Orders != null)
-            {
-                order.Orders = new List<Products>();
-                foreach (Products i in order.Orders)
-                {
-                    dto.Orders = order.Orders;
-                }
-            }*/
             dto.Orders = order.Orders;
             dto.Status = order.Status;
 
