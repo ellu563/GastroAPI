@@ -9,10 +9,11 @@ namespace GastroAPI.Models
         [Key]
         // huom. productId olisi paremmin ollut nimetty basketId
         public long ProductId { get; set; }
-        public String TableNumber { get; set; } // huom. table modelia ei nyt kayteta
+        public String TableNumber { get; set; } 
+        public String CustomerCode { get; set; }
         public String Item { get; set; }
         public String Price { get; set; }
-        public String Amount { get; set; } // pitää lisätä kentäksi
+        public String Amount { get; set; } 
         public DateTime OrderTime { get; set; }
         public String Status { get; set; }
     }
@@ -21,9 +22,9 @@ namespace GastroAPI.Models
         // tämä tuodaan esiin ostoskorissa
         [Key]
         public long ProductId { get; set; } 
-        public String? Item { get; set; } // reservationDTO:ssa tama myos string
+        public String? Item { get; set; } 
 
-        public String? Price { get; set; } // huom. reservationDTO:ssa tama on long tyyppinen
+        public String? Price { get; set; } 
         public String? Amount { get; set; }
         public string Status { get; set; }
     }

@@ -26,15 +26,20 @@ namespace GastroAPI.Repositories
         // haetaan yksi id:n perusteella
         public async Task<Basket> GetBasketAsync(long id)
         {
-            // huom. tähän voitaisiin vaihtaa että TableNumber, hakee sillon sen perusteella
             return await _context.Baskets.FirstOrDefaultAsync(i => i.ProductId == id);
         }
-
+        
         // haetaan poytanumeron perusteella kaikki sen tilaukset listaan
         public async Task<IEnumerable<Basket>> GetBasketsAsync(string tablenumber)
         {
           // varmistetaan myös että status on "basket"
           return await _context.Baskets.Where(x => x.TableNumber == tablenumber && x.Status == stat).ToListAsync();
+        }
+
+        // haetaan asikasnumeron perusteella kaikki sen tilaukset listaan
+        public async Task<IEnumerable<Basket>> GetBasketByCustomerAsync(string customerCode)
+        {
+            return await _context.Baskets.Where(x => x.CustomerCode == customerCode).ToListAsync();
         }
 
         // lisää uusi

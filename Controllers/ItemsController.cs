@@ -69,6 +69,11 @@ namespace GastroAPI.Controllers
         }
 
         // tehdään haku nyt vaan yhdelle tuotteelle
+        /// <summary>
+        /// Haku vain yhdelle tuotteelle kyselyn perusteella
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpGet("one/{query}")]
         public async Task<ActionResult<ItemDTO>> QueryItem(String query)
         {

@@ -24,7 +24,7 @@ namespace GastroAPI.Controllers
             _service = service;
         }
         /// <summary>
-        /// Hae kaikki basketit
+        /// Hae kaikki tilaukset
         /// </summary>
         /// <returns></returns>
         // GET: api/Baskets
@@ -47,7 +47,18 @@ namespace GastroAPI.Controllers
             return Ok(await _service.GetBasketsAsync(tablenumber)); // Ok=http 200
         }
 
-   
+        /// <summary>
+        /// Hae kaikki asiakasnumeron perusteella
+        /// </summary>
+        /// <param name="customerCode"></param>
+        /// <returns></returns>
+        [HttpGet("table/customer/{customerCode}")]
+        public async Task<ActionResult<IEnumerable<BasketDTO>>> GetBasketByCustomer(string customerCode)
+        {
+            return Ok(await _service.GetBasketByCustomerAsync(customerCode)); // Ok=http 200
+        }
+
+
         // GET: api/Baskets/5
         /// <summary>
         /// Hae yksi id:n perusteella

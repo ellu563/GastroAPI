@@ -32,6 +32,7 @@ namespace GastroAPI.Services
 
             newBasket.ProductId = dto.ProductId;
             newBasket.TableNumber = dto.TableNumber; 
+            newBasket.CustomerCode = dto.CustomerCode;
             newBasket.Amount = dto.Amount;
             newBasket.Item = dto.Item;
             newBasket.Price = dto.Price;
@@ -68,10 +69,23 @@ namespace GastroAPI.Services
             return result; 
         }
 
+        
         // haetaan tuotteet kaikki poytanumeron perusteella
         public async Task<IEnumerable<BasketDTO>> GetBasketsAsync(string tablenumber)
         {
             IEnumerable<Basket> baskets = await _repository.GetBasketsAsync(tablenumber);
+            List<BasketDTO> basketDTOs = new List<BasketDTO>();
+            foreach (Basket i in baskets)
+            {
+                basketDTOs.Add(BasketToDTO(i));
+            }
+            return basketDTOs;
+        }
+
+        // haetaan tuotteet kaikki asiakasnumeron perusteella
+        public async Task<IEnumerable<BasketDTO>> GetBasketByCustomerAsync(string customerCode)
+        {
+            IEnumerable<Basket> baskets = await _repository.GetBasketByCustomerAsync(customerCode);
             List<BasketDTO> basketDTOs = new List<BasketDTO>();
             foreach (Basket i in baskets)
             {

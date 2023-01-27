@@ -25,6 +25,10 @@ namespace GastroAPI.Controllers
         }
 
         // GET: api/Orders
+        /// <summary>
+        /// Haetaan kaikki tilaukset
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
@@ -32,6 +36,11 @@ namespace GastroAPI.Controllers
         }
 
         // GET: api/Orders/5
+        /// <summary>
+        /// Haetaan id:n perusteella
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(long id)
         {
@@ -47,6 +56,11 @@ namespace GastroAPI.Controllers
 
         // GET pöytänumeron perusteella, ORDERDTO
         // include (tilauksessa olevat products) + haetaan vain ne tilaukset jossa status = "open"
+        /// <summary>
+        /// Haetaan pöytänumeron perusteella
+        /// </summary>
+        /// <param name="tablenumber"></param>
+        /// <returns></returns>
         [HttpGet("table/{tablenumber}")]
         public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders(string tablenumber)
         {
@@ -54,6 +68,11 @@ namespace GastroAPI.Controllers
         }
 
         // GET status OPEN
+        /// <summary>
+        /// Haetaan pöytänumeron perusteella, jossa status open
+        /// </summary>
+        /// <param name="tablenumber"></param>
+        /// <returns></returns>
         [HttpGet("table/tables/{tablenumber}")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersBy(string tablenumber)
         {
@@ -61,6 +80,11 @@ namespace GastroAPI.Controllers
         }
 
         // GET status BILLING
+        /// <summary>
+        /// Haetaan pöytänumeron perusteella, jossa status billing
+        /// </summary>
+        /// <param name="tablenumber"></param>
+        /// <returns></returns>
         [HttpGet("table/billing/{tablenumber}")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersBillingBy(string tablenumber)
         {
@@ -69,6 +93,12 @@ namespace GastroAPI.Controllers
 
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Muokkaa id:n perusteella
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(long id, Order order)
         {
@@ -100,6 +130,11 @@ namespace GastroAPI.Controllers
 
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Luo uuden
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
@@ -110,6 +145,11 @@ namespace GastroAPI.Controllers
         }
 
         // DELETE: api/Orders/5
+        /// <summary>
+        /// Poista
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(long id)
         {

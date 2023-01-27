@@ -9,9 +9,15 @@ namespace GastroAPI.Services
      
         public Task<IEnumerable<BasketDTO>> GetBasketsAsync(); // hae kaikki
 
+        
         public Task<IEnumerable<BasketDTO>> GetBasketsAsync(string tablenumber); // hae pöytänumeron perusteella
+        
 
-        // KORJATAAN
+        // hae asiakasnumeron perusteella
+        public Task<IEnumerable<BasketDTO>> GetBasketByCustomerAsync(string customerCode);
+        
+
+        // luo
         public Task<Basket> CreateBasketAsync(Basket dto);
     }
 }
