@@ -1,6 +1,6 @@
 ### Backend Gastro ruoantilausjärjestelmälle 
 
-###### Backend järjestelmä hoitaa sovelluksen GET, POST ja PUT kutsut
+###### Backend järjestelmä hoitaa sovelluksen GET, POST, PUT ja DELETE kutsut
 
 ### Lataa backend & frontend
 
