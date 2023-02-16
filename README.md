@@ -1,16 +1,23 @@
-### Backend Gastro ruoantilausjärjestelmälle 
+### "Gastro" ruoantilausjärjestelmä
 
-###### Backend järjestelmä hoitaa sovelluksen GET, POST, PUT ja DELETE kutsut
+###### Järjestelmää hyödynnetään ravintolassa pöytäkohtaisesti, jolloin asiakkaat pystyvät tekemään tilauksia erikseen jokaisesta pöydästä suoraan pöytään. Tilauksen pohjan logiikkana on käytetty 3-numeroista pöytäkohtaista koodia, joka lukee ravintolan pöydässä. Tämän koodin perusteella asiakas pääsee tekemään tilausta, ja valitsemaan haluamansa tuotteet ostoskoriin. Pöytäkoodin yhteydessä asiakkaalle luodaan järjestelmässä myös henkilökohtainen asiakasnumero, jonka perusteella asiakkaan tilaamat tuotteet lisätään tietokantaan, ja tuodaan esiin ostoskorissa. Ostoskorista tuotteet lähetetään eteenpäin ns. henkiökunnan puolelle, josta tilauksia pääsee seuraamaan kahdesta eri paikkaa. Ensin tilaus lähetetään keittiöön, josta keittiön henkilökunta pystyy merkitsemään tilauksen valmiiksi. Kun tilaus on keittiön puolella merkitty valmiiksi, siirtyy tilaus laskutuspuolelle. Laskutuspuolelta laskun maksamisen jälkeen pystytään myös merkitsemään tilaus kokonaan käsitellyksi, jolloin tietokantaan päivittyy tilaukselle status "closed", ja tilaus on käsitelty loppuun. 
 
-### Lataa backend & frontend
+### Backend / GastroAPI, lataa backend
 
-###### Lataa backend https://github.com/ellu563/GastroAPI.git + npm install > (älä laita projektia vielä käyntiin)
-###### Lataa frontend https://github.com/elinasylvia/GastroBar-Saimaa---sovellus.git + npm install > ng serve --o
+###### Backend järjestelmä hoitaa järjestelmän GET, POST, PUT ja DELETE kutsut
+###### Backend > Visual Studio: C# & .NET, ja tietokantana käytetään paikallista Microsoft SQL Serveriä
+
+###### https://github.com/ellu563/GastroAPI.git + npm install > (lue seuraavat ohjeet ennen projektin käynnistämistä)
+
+### Lataa frontend
+
+###### Frontend > Angular, TypeScript
+###### Frontend https://github.com/elinasylvia/GastroBar-Saimaa---sovellus.git + npm install > ng serve --o
 
 ### Backend ohjeet: Microsoft SQL Server Management Studio
 
 ###### Tarkistetaan ensin tietokanta asetukset, jotta saadaan backend toimintaan
-###### Avaa Microsoft SQL Server Management Studio ja tarkasta avatessasi ohjelmaa lokaalin serverisi nimi: localhost vai localhost\SQLEXPRESS
+###### Avaa Microsoft SQL Server Management Studio ja tarkasta avatessasi ohjelmaa oman lokaalin serverisi nimi: localhost vai localhost\SQLEXPRESS
 ###### Mikäli serverisi nimi on SQL studiossa "localhost" (tai mahdollisesti oman koneen nimi) > Visual Studio > projektin appsetting.json > vaihda "ConnectionStrings" serverin nimeksi pelkkä localhost
 ###### Mikäli serverisi nimi on SQL studiossa "localhost\SQLEXPRESS" > saat projektin käyntiin suoraan
 ##### Nyt voit käynnistää backend projektin Visual Studiossa: PLAY
