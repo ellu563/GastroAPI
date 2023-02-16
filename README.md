@@ -6,13 +6,13 @@
 
 ### Lataa frontend
 
-###### Frontend > Angular, TypeScript
+###### Frontend: Angular, TypeScript
 ###### Frontend https://github.com/elinasylvia/GastroBar-Saimaa---sovellus.git + npm install > ng serve --o
 
 ### Backend / GastroAPI, lataa backend
 
 ###### Backend järjestelmä hoitaa järjestelmän GET, POST, PUT ja DELETE kutsut
-###### Backend > Visual Studio: C# & .NET, ja tietokantana käytetään paikallista Microsoft SQL Serveriä
+###### Backend: Visual Studio: C# & .NET, ja tietokantana käytetään paikallista Microsoft SQL Serveriä
 
 ###### https://github.com/ellu563/GastroAPI.git + npm install > (lue seuraavat ohjeet ennen projektin käynnistämistä)
 
