@@ -4,17 +4,17 @@
 
 ###### Ostoskorista tuotteet lähetetään eteenpäin ns. henkiökunnan puolelle, josta tilauksia pääsee seuraamaan kahdesta eri paikkaa. Ensin tilaus lähetetään keittiöön, josta keittiön henkilökunta pystyy merkitsemään tilauksen valmiiksi. Kun tilaus on keittiön puolella merkitty valmiiksi, siirtyy tilaus laskutuspuolelle. Laskutuspuolelta laskun maksamisen jälkeen pystytään myös merkitsemään tilaus kokonaan käsitellyksi, jolloin tietokantaan päivittyy tilaukselle status "closed", ja tilaus on käsitelty loppuun. 
 
+### Lataa frontend
+
+###### Frontend > Angular, TypeScript
+###### Frontend https://github.com/elinasylvia/GastroBar-Saimaa---sovellus.git + npm install > ng serve --o
+
 ### Backend / GastroAPI, lataa backend
 
 ###### Backend järjestelmä hoitaa järjestelmän GET, POST, PUT ja DELETE kutsut
 ###### Backend > Visual Studio: C# & .NET, ja tietokantana käytetään paikallista Microsoft SQL Serveriä
 
 ###### https://github.com/ellu563/GastroAPI.git + npm install > (lue seuraavat ohjeet ennen projektin käynnistämistä)
-
-### Lataa frontend
-
-###### Frontend > Angular, TypeScript
-###### Frontend https://github.com/elinasylvia/GastroBar-Saimaa---sovellus.git + npm install > ng serve --o
 
 ### Backend ohjeet: Microsoft SQL Server Management Studio
 
