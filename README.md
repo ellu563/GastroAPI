@@ -79,4 +79,4 @@
  
  ### Huomioitavia asioita
  
- ###### Tilauksen tekeminen ja ostoskorin näkeminen toimii nyt vain jos pysyt pöytäkoodin kysymisen jälkeen samassa istunnossa, eli päivittäessä (refresh) sivua joudut navigoimaan alkuun eli pöytäkoodin kysymiseen uudelleen
+ ###### Tilaus & henkilökohtainen asiakasnumero tyhjennetään "lähetä" napin painalluksen jälkeen
